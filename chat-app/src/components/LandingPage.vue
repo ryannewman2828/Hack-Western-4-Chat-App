@@ -46,9 +46,9 @@
                         Login
                   </button>
 
-                  <button class="button is-primary">
-                        <router-link to="/sign-up">Register</router-link>
-                  </button>
+
+                  <router-link tag="button" class="button is-primary" to="/sign-up">Register</router-link>
+
                 </div>
               </div>
             </article>
