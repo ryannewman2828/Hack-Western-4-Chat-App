@@ -34,6 +34,13 @@ ChatService.create = function (email, target) {
                                     email: users[i].email,
                                     name: users[i].name,
                                 });
+                                users[i].chats.push({
+                                    message_id: guid,
+                                    email: user.email,
+                                    name: user.name,
+                                });
+                                user.save();
+                                users[i].save();
                                 return {
                                     message_id: guid,
                                     user1Name: user.name,
@@ -52,12 +59,18 @@ ChatService.create = function (email, target) {
                     for (var i = 0; i < users.length; i++) {
                         if (chats.indexOf(users[i].email) === -1 && ChatUtil.isMatch(users[i], user)) {
                             const guid = Guid.raw();
-                            user.chats.append({
+                            user.chats.push({
                                 message_id: guid,
                                 email: users[i].email,
                                 name: users[i].name,
                             });
+                            users[i].chats.push({
+                                message_id: guid,
+                                email: user.email,
+                                name: user.name,
+                            });
                             user.save();
+                            users[i].save();
                             return {
                                 message_id: guid,
                                 user1Name: user.name,
