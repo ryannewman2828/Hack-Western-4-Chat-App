@@ -2,20 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 // Controllers
-const TwitterController = require('./Controller/TwitterController');
+const TwitterController = require('./Controllers/TwitterController');
+const UserController = require('./Controllers/UserController');
 
-/* GET home page. */
-router.get('/v1/test', function (req, res) {
-    // Temp values
-    res.json([{
-        id: 1,
-        username: 'samsepi0l'
-    }, {
-        id: 2,
-        username: 'D0loresH4ze'
-    }]);
-});
+router.get('/v1/test', TwitterController.test);
 
-router.get('/v1/test2', TwitterController.test);
+// User routes
+router.post('/v1/register', UserController.register);
+router.post('/v1/login', UserController.login);
 
 module.exports = router;
