@@ -19,8 +19,7 @@ var db = admin.database();
 var ref = db.ref("conversations/23423rsfsf34");
 
 ref.on("value", function(snapshot) {
-    console.log(snapshot.val());
-    MessageService.analyze(snapshot.val);
+    MessageService.analyze(snapshot.val());
 });
 
 module.exports = FireBaseUtil;

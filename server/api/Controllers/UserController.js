@@ -57,9 +57,8 @@ UserController.register = function (req, res, next) {
 
         return personality_insights.profile(params, function(error, response) {
 
-            console.log(error);
-
             if (error) {
+                console.log(error);
                 return null;
             }
 
