@@ -12,6 +12,7 @@
     "debug": "~2.6.3",
     "express": "~4.15.2",
     "firebase-admin": "^5.5.0",
+    "guid": "^0.0.12",
     "jade": "~1.11.0",
     "jsonwebtoken": "^8.1.0",
     "mongoose": "^4.13.4",

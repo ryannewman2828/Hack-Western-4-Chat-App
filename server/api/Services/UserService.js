@@ -12,7 +12,7 @@ UserService.register = function (body) {
     newUser.userStatus = body.userStatus;
     newUser.stress = body.stress;
     newUser.sympathy = body.sympathy;
-    newUser.outgoing = mongoose.Schema.Types.Mixed;
+    newUser.outgoing = body.outgoing;
     newUser.needsExcitment = body.needsExcitement;
     newUser.needsStability = body.needsStability;
     newUser.adventerous = body.adventerous;
@@ -20,6 +20,7 @@ UserService.register = function (body) {
     newUser.melancholy = body.melancholy;
     newUser.tone = {};
     newUser.chats = [];
+    newUser.searching = false;
 
     newUser.save(function(err) {
         if (err) {

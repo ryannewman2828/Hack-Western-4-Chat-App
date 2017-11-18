@@ -28,7 +28,8 @@ var userSchema = new mongoose.Schema({
     altruism: mongoose.Schema.Types.Mixed,
     melancholy: mongoose.Schema.Types.Mixed,
     tone: mongoose.Schema.Types.Mixed,
-    chats: [String],
+    chats: [mongoose.Schema.Types.Mixed],
+    searching: Boolean,
 });
 
 userSchema.methods.generateJwt = function () {
