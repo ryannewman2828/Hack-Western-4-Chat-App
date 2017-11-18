@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+// Controllers
+const TwitterController = require('./Controller/TwitterController');
+
 /* GET home page. */
 router.get('/v1/test', function (req, res) {
     // Temp values
@@ -13,5 +16,6 @@ router.get('/v1/test', function (req, res) {
     }]);
 });
 
+router.get('/v1/test2', TwitterController.test);
 
 module.exports = router;
