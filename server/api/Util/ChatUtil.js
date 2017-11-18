@@ -10,8 +10,8 @@ ChatUtil.isMatch = function (student1, student2) {
         (student2.outgoing.percentile >= 0.75 && student1.outgoing.percentile <= 0.5)) {
         return true
     }
-    if ((student1.needsExcitement.percentile >= 0.75 && student2.adventerous.percentile >= 0.75) ||
-        (student2.needsExcitement.percentile >= 0.75 && student1.adventerous.percentile >= 0.75)) {
+    if ((student1.needsExcitment.percentile >= 0.75 && student2.adventerous.percentile >= 0.75) ||
+        (student2.needsExcitment.percentile >= 0.75 && student1.adventerous.percentile >= 0.75)) {
         return true
     }
     if ((student1.needsStability.percentile >= 0.75 && student2.adventerous.percentile <= 0.5) ||

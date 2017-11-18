@@ -37,7 +37,7 @@ MessageService.analyze = function (messages) {
                     if (err) {
                         console.log(err);
                     }
-                    user1.tone = tone;
+                    user1.tone = tone.document_tone.tone_categories[0].tones;
                     user1.save();
                 });
         })
@@ -52,7 +52,7 @@ MessageService.analyze = function (messages) {
                             if (err) {
                                 console.log(err);
                             }
-                            user2.tone = tone;
+                            user2.tone = tone.document_tone.tone_categories[0].tones;
                             user2.save();
                         });
                 })

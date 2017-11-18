@@ -18,6 +18,7 @@ ChatController.create = function (req, res, next) {
 
     return ChatService.create(email, target)
         .then(function (resp) {
+            console.log(resp);
             return res.send(resp);
         })
         .catch(next);
