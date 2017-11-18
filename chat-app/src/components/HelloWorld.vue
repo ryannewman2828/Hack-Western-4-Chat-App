@@ -1,23 +1,68 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
-  </div>
+ <div id="app">
+    <div class="body body-class">
+    <div id="#wrapper">
+    <div class = "tile is-ancestor main-tile">
+
+      <div class="tile is-ancestor">
+      <div class="tile is-8 is-vertical is-parent">
+        <div class="tile is-child">
+          <section class="hero is-primary hero-styles" id="#hero">
+          <div class="hero-body">
+            <div class="container">
+              <h1 class="title">
+                Primary title
+              </h1>
+              <h2 class="subtitle">
+                Primary subtitle
+              </h2>
+            </div>
+
+          </div>
+          </section>
+        </div>
+      </div>
+      <div class="tile is-parent">
+        <div class="tile is-child box">
+            <article class="tile is-child">
+      <div class="content login-box">
+        <div class="tile is-child is-vertical image-tile">
+          <img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-579281.jpg"/>
+        </div>
+        <div class="tile is-child box is-vertical">
+
+        <b-field label="Username"
+          type="is-success"
+          message="This username is available">
+          <b-input placeholder="Enter Username"></b-input>
+        </b-field>
+
+        <b-field label="Password"
+          type="is-warning"
+          :message="['Password is too short', 'Password must have at least 8 characters']">
+        <b-input placeholder="Enter Password" type="password"></b-input>
+        </b-field>
+          <button class="button is-primary" @click="$toast.open('Login')">
+              Login
+          </button>
+          <button class="button is-primary">
+              Register
+          </button>
+        </div>
+      </div>
+    </article>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
+    </div>
+</div>
 </template>
 
 <script>
@@ -33,18 +78,43 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.body-class {
+    height: 100%;
+    min-height: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 0;
+}
+
+.hero-styles {
+  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+}
+
+#wrapper
+{
+    height: 100%;
+    min-height: 100%;
+}
+
+.hero-styles {
+  height: 90vh;
+}
+
+.main-tile {
+  height: 100%;
+  min-height: 100%;
+}
+
 h1, h2 {
   font-weight: normal;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+
 a {
   color: #42b983;
+}
+
+.image-tile {
+  padding-top: 70px;
 }
 </style>
