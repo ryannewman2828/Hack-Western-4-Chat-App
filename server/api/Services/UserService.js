@@ -26,14 +26,18 @@ UserService.register = function (body) {
             throw err;
         }
     });
+
+    return BPromise.resolve(true);
 };
 
 UserService.login = function (email, password) {
-    User.find({ email: email })
+    return User.findOne({ email: email })
         .then(function (user) {
             if (user && user.password === password){
-                return BPromise.resolve({ token: user.generateJwt, email: email });
+                console.log(user.generateJwt())
+                return BPromise.resolve({ token: user.generateJwt(), email: email });
             }
+            return BPromise.reject();
         })
 };
 
