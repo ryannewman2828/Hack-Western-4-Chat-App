@@ -52,9 +52,7 @@ UserController.register = function (req, res, next) {
                 "Content-Type": "application/json"
             }
         };
-
-        console.log(tweets);
-
+        
         return personality_insights.profile(params, function(error, response) {
 
             if (error) {
@@ -113,6 +111,26 @@ UserController.login = function (req, res, next) {
     return UserService.login(email, password)
         .then(function (token) {
             return res.status(200).json(token);
+        })
+        .catch(next);
+};
+
+UserController.getPersonality = function (req, res, next) {
+    const email = req.params.email;
+
+    return UserService.getPersonality(email)
+        .then(function (resp) {
+            return res.send(resp);
+        })
+        .catch(next);
+};
+
+UserController.getTone = function (req, res, next) {
+    const email = req.params.email;
+
+    return UserService.getPersonality(email)
+        .then(function (resp) {
+            return res.send(resp);
         })
         .catch(next);
 };

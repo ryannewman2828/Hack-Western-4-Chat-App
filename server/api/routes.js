@@ -14,6 +14,10 @@ router.post('/v1/login', UserController.login);
 
 // Chat routes
 router.get('/v1/chat/all', ChatController.getAll);
-router.post('/v1/chat/create', ChatController.create)
+router.post('/v1/chat/create', ChatController.create);
+
+// Stat routes
+router.get('/v1/tone/:email', UserController.getTone);
+router.get('/v1/personality/:email', UserController.getPersonality);
 
 module.exports = router;

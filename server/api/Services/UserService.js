@@ -42,4 +42,37 @@ UserService.login = function (email, password) {
         })
 };
 
+UserService.getPersonality = function (email) {
+    return User.findOne({ user: email })
+        .then(function (user) {
+            if (!user) {
+                return null;
+            }
+
+            return {
+                stress: user.stress,
+                sympathy: user.sympathy,
+                outgoing: user.outgoing,
+                needsExcitment: user.needsExcitment,
+                needsStability: user.needsStability,
+                adventerous: user.adventerous,
+                altruism: user.altruism,
+                melancholy: user.melancholy,
+            }
+        })
+};
+
+UserService.getTone = function (email) {
+    return User.findOne({ user: email })
+        .then(function (user) {
+            if (!user) {
+                return null;
+            }
+
+            return {
+                tone: user.tone,
+            }
+        })
+};
+
 module.exports = UserService;
