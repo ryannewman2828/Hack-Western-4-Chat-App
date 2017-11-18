@@ -28,14 +28,14 @@ ChatService.create = function (email, target) {
                     .then(function (users) {
                         for (var i = 0; i < users.length; i++) {
                             if (chats.indexOf(users[i].email) === -1) {
-                                const guid = Guid.raw()
+                                const guid = Guid.raw();
                                 user.chats.append({
-                                    mesage_id: guid,
+                                    message_id: guid,
                                     email: users[i].email,
                                     name: users[i].name,
                                 });
                                 return {
-                                    guid: guid,
+                                    message_id: guid,
                                     user1Name: user.name,
                                     user2Name: users[i].name,
                                     user1Email: user.email,
@@ -51,15 +51,15 @@ ChatService.create = function (email, target) {
                 .then(function (users) {
                     for (var i = 0; i < users.length; i++) {
                         if (chats.indexOf(users[i].email) === -1 && ChatUtil.isMatch(users[i], user)) {
-                            const guid = Guid.raw()
+                            const guid = Guid.raw();
                             user.chats.append({
-                                mesage_id: guid,
+                                message_id: guid,
                                 email: users[i].email,
                                 name: users[i].name,
                             });
                             user.save();
                             return {
-                                guid: guid,
+                                message_id: guid,
                                 user1Name: user.name,
                                 user2Name: users[i].name,
                                 user1Email: user.email,

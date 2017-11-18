@@ -53,7 +53,15 @@ UserController.register = function (req, res, next) {
             }
         };
 
+        console.log(tweets);
+
         return personality_insights.profile(params, function(error, response) {
+
+            console.log(error);
+
+            if (error) {
+                return null;
+            }
 
             response.personality.forEach(function (obj) {
                obj.children.forEach(function (child) {

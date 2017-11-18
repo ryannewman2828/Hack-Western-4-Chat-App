@@ -1,6 +1,8 @@
 var admin = require("firebase-admin");
 var path = require('path');
 
+const MessageService = require('../Services/MessageService');
+
 const FireBaseUtil = {};
 
 // Fetch the service account key JSON file contents
@@ -14,9 +16,11 @@ admin.initializeApp({
 
 // As an admin, the app has access to read and write all data, regardless of Security Rules
 var db = admin.database();
-var ref = db.ref("restricted_access/secret_document");
-ref.once("value", function(snapshot) {
+var ref = db.ref("conversations/23423rsfsf34");
+
+ref.on("value", function(snapshot) {
     console.log(snapshot.val());
+    MessageService.analyze(snapshot.val);
 });
 
 module.exports = FireBaseUtil;

@@ -16,7 +16,7 @@ ChatController.create = function (req, res, next) {
     const email = req.body.email;
     const target = req.body.target;
 
-    return ChatController.create(email, target)
+    return ChatService.create(email, target)
         .then(function (resp) {
             return res.send(resp);
         })
