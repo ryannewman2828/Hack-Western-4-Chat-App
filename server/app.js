@@ -4,6 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var admin = require("firebase-admin");
+
+// Fetch the service account key JSON file contents
+
+// Initialize the app with a service account, granting admin privileges
+
 
 require('./models/db');
 var routes = require('./api/routes');
@@ -40,5 +46,7 @@ const env = process.env.NODE_ENV || 'development';
 app.listen(port, function() {
   console.log('Listening on ' + port);
 });
+
+// As an admin, the app has access to read and write all data, regardless of Security Rules
 
 module.exports = app;
