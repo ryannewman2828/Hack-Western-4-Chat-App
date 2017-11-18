@@ -93,7 +93,7 @@ UserController.register = function (req, res, next) {
 
             return UserService.register(body)
                 .then(function () {
-                    return res.status.send({message: 'success'});
+                    return res.status(200).send({message: 'success'});
                 })
         });
     });
@@ -101,7 +101,7 @@ UserController.register = function (req, res, next) {
 
 UserController.login = function (req, res, next) {
     const email = req.body.email;
-    const password = req.boby.password;
+    const password = req.body.password;
     
     return UserService.login(email, password)
         .then(function (token) {
