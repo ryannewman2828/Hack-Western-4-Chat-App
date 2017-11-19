@@ -13,6 +13,11 @@ const tone_analyzer = new ToneAnalyzerV3({
 });
 
 MessageService.analyze = function (messages) {
+
+    if (!messages) {
+        return null;
+    }
+
     const userMap = {};
 
     const arrMessages = Object.keys(messages).map(function (key) {
