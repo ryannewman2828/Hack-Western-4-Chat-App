@@ -16,7 +16,7 @@ admin.initializeApp({
 
 // As an admin, the app has access to read and write all data, regardless of Security Rules
 var db = admin.database();
-var ref = db.ref("conversations/23423rsfsf34");
+var ref = db.ref("conversations/");
 
 ref.on("value", function(snapshot) {
     MessageService.analyze(snapshot.val());

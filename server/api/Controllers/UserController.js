@@ -110,7 +110,7 @@ UserController.login = function (req, res, next) {
     
     return UserService.login(email, password)
         .then(function (token) {
-            return res.status(200).json(token);
+            return token ? res.status(200).json(token) : res.status(400).json({ message: "login failed" })
         })
         .catch(next);
 };

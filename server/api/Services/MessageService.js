@@ -1,4 +1,5 @@
 var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+const BPromise = require('bluebird');
 const mongoose = require('mongoose');
 var User = mongoose.model('User');
 
@@ -12,51 +13,41 @@ const tone_analyzer = new ToneAnalyzerV3({
 });
 
 MessageService.analyze = function (messages) {
-    const email1 = messages.messages.email1;
-    const email2 = messages.messages.email2;
+    const userMap = {};
 
-    var messages1 = Object.keys(messages.messages).map(function (key) {
-        return messages.messages[key];
-    }).filter(function (message) {
-        return message.senderEmail === email1;
+    const arrMessages = Object.keys(messages).map(function (key) {
+        return messages[key].messages;
     });
 
-    var messages2 = Object.keys(messages.messages).map(function (key) {
-        return messages.messages[key];
-    }).filter(function (message) {
-        return message.senderEmail === email2;
-    });
-
-    User.findOne({ email: email1 })
-        .then(function (user1) {
-            if (messages1.length === 0) {
-                return null;
+    arrMessages.forEach(function (messages) {
+        messages = Object.keys(messages).map(function (key) {
+            return messages[key];
+        });
+        messages.forEach(function (message) {
+            if (userMap.hasOwnProperty(message.senderEmail)) {
+                userMap[message.senderEmail].push(message.text);
+            } else {
+                userMap[message.senderEmail] = [message.text];
             }
-            return tone_analyzer.tone({ text: messages1.join('\n'), tones: 'emotion' },
-                function(err, tone) {
-                    if (err) {
-                        console.log(err);
-                    }
-                    user1.tone = tone.document_tone.tone_categories[0].tones;
-                    user1.save();
-                });
-        })
-        .then(function () {
-            return User.findOne({ email: email2 })
-                .then(function (user2) {
-                    if (messages2.length === 0) {
-                        return null;
-                    }
-                    return tone_analyzer.tone({ text: messages2.join('\n'), tones: 'emotion' },
-                        function(err, tone) {
-                            if (err) {
-                                console.log(err);
-                            }
-                            user2.tone = tone.document_tone.tone_categories[0].tones;
-                            user2.save();
-                        });
-                })
-        })
+        });
+    });
+
+    BPromise.all(Object.keys(userMap).map(function (key) {
+        return User.findOne({ email: key })
+            .then(function (user) {
+                if (userMap[key].length === 0) {
+                    return null;
+                }
+                return tone_analyzer.tone({ text: userMap[key].join('\n'), tones: 'emotion' },
+                    function(err, tone) {
+                        if (err) {
+                            console.log(err);
+                        }
+                        user.tone = tone.document_tone.tone_categories[0].tones;
+                        user.save();
+                    });
+            })
+    }));
 };
 
 module.exports = MessageService;
