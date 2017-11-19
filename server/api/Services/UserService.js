@@ -35,7 +35,7 @@ UserService.login = function (email, password) {
     return User.findOne({ email: email })
         .then(function (user) {
             if (user && user.password === password){
-                return BPromise.resolve({ token: user.generateJwt(), email: email });
+                return BPromise.resolve({ token: user.generateJwt(), email: email, name: user.name });
             }
             return BPromise.resolve({ message: 'incorrect login' });
         })
